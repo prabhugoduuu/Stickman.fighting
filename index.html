@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -12,7 +12,7 @@
   #game { position:fixed; inset:0; width:100%; height:100%; display:block; }
   .hud { position:fixed; z-index:3; top:env(safe-area-inset-top, 0px); left:0; right:0; display:flex; align-items:flex-start; justify-content:space-between; gap:10px; padding:12px clamp(10px,2vw,24px); pointer-events:none; }
   .panel { background:linear-gradient(145deg,rgba(7,18,31,.82),rgba(17,35,51,.68)); border:1px solid var(--line); border-radius:15px; box-shadow:0 8px 28px rgba(0,0,0,.18); backdrop-filter:blur(8px); color:#fff; }
-  .health-card { width:min(245px,49vw); padding:10px 12px; }
+  .health-card { width:min(230px,43vw); padding:10px 12px; }
   .tiny-label { font-size:10px; letter-spacing:.16em; color:#b9d6e8; font-weight:800; text-transform:uppercase; }
   .hp-row { display:flex; justify-content:space-between; gap:8px; align-items:center; margin:4px 0 7px; font-size:12px; font-weight:800; }
   .hp-track { height:10px; border-radius:99px; overflow:hidden; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.14); }
@@ -51,19 +51,20 @@
   .secondary { margin-top:9px; border:1px solid rgba(255,255,255,.2); border-radius:13px; background:rgba(255,255,255,.07); color:#fff; font-weight:800; padding:11px 18px; cursor:pointer; }
   .shop-modal { max-height:88vh; overflow:auto; }
   .shop-list { display:grid; gap:9px; margin:0 0 18px; text-align:left; }
-  .shop-item { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px; border:1px solid rgba(255,255,255,.15); border-radius:13px; background:rgba(255,255,255,.055); }
+  .shop-item { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px; border:1px solid #dce7f0; border-radius:13px; background:linear-gradient(180deg,#fff,#f4f8fb); }
   .shop-item b { display:block; font-size:13px; }
-  .shop-item small { display:block; margin-top:3px; color:#bdd3e3; font-size:10px; }
+  .shop-item small { display:block; margin-top:3px; color:#6b8297; font-size:10px; }
   .shop-buy { min-width:86px; border:0; border-radius:9px; padding:9px 8px; color:#172436; background:linear-gradient(100deg,#ffe27b,#ffad52); font-size:10px; font-weight:1000; }
   .shop-buy:disabled { color:#d5e1eb; background:#3a4d60; }
-  .footer-brand { position:fixed; z-index:2; bottom:5px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.78); text-shadow:0 1px 5px rgba(0,0,0,.55); font-size:8px; letter-spacing:.18em; white-space:nowrap; pointer-events:none; }
+  .footer-brand { position:fixed; z-index:2; bottom:8px; right:10px; left:auto; transform:none; color:rgba(24,58,83,.72); text-shadow:0 1px 0 rgba(255,255,255,.75); font-size:7px; letter-spacing:.12em; white-space:nowrap; pointer-events:none; opacity:.85; }
   .toast { position:fixed; z-index:6; left:50%; top:26%; transform:translate(-50%,-8px); opacity:0; transition:opacity .2s,transform .2s; pointer-events:none; border-radius:14px; padding:10px 16px; background:rgba(8,23,36,.88); border:1px solid rgba(255,255,255,.2); color:#fff; font-weight:900; font-size:13px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.25); }
   .toast.show { opacity:1; transform:translate(-50%,0); }
   @media (max-width:600px) {
     .hud { padding:8px 9px; }
-    .health-card { width:min(245px,49vw); padding:8px; border-radius:12px; }
+    .health-card { padding:8px; border-radius:12px; }
     .brand { top:12px; }
     .brand small { font-size:7px; }
+    .footer-brand { right:7px; bottom:5px; font-size:6px; }
     .icon-btn { width:37px; height:37px; border-radius:10px; }
     .actions { gap:5px; }
     .wave-pill { top:83px; font-size:10px; }
@@ -102,7 +103,7 @@
     <div class="hp-row"><span>❤️ HEALTH</span><span id="hpText">200 / 200</span></div>
     <div class="hp-track"><div id="hpFill"></div></div>
     <div class="stats">
-      <div class="stat"><b id="killText">0 / 999</b><span>Defeated</span></div>
+      <div class="stat"><b id="killText">0 / 1000</b><span>Defeated</span></div>
       <div class="stat"><b id="waveText">01 / 20</b><span>Wave</span></div>
       <div class="stat"><b id="coinText">0 🪙</b><span>Coins</span></div>
     </div>
@@ -137,10 +138,11 @@
     <h1>WEAPON ARMORY</h1>
     <p>Earn 1 coin for every enemy defeated. Buy weapons, then use SWITCH to equip an owned weapon.</p>
     <div class="shop-list">
-      <div class="shop-item"><div><b>⚔️ Katana</b><small>20 damage · Free starter</small></div><button class="shop-buy" data-weapon="katana">EQUIPPED</button></div>
-      <div class="shop-item"><div><b>🔫 Gun</b><small>30 damage · Fast ranged shots</small></div><button class="shop-buy" data-weapon="gun">10 🪙 BUY</button></div>
-      <div class="shop-item"><div><b>💥 Heavy Blaster</b><small>45 damage · Heavy shot</small></div><button class="shop-buy" data-weapon="heavy">25 🪙 BUY</button></div>
-      <div class="shop-item"><div><b>⚡ Plasma Blade</b><small>60 damage · Short range</small></div><button class="shop-buy" data-weapon="plasma">35 🪙 BUY</button></div>
+      <div class="shop-item"><div><b>🪵 Stick</b><small>10 damage · Free starter weapon</small></div><button class="shop-buy" data-weapon="stick">EQUIPPED</button></div>
+      <div class="shop-item"><div><b>⚔️ Katana</b><small>20 damage · Sharp melee weapon</small></div><button class="shop-buy" data-weapon="katana">10 🪙 BUY</button></div>
+      <div class="shop-item"><div><b>🔫 Gun</b><small>30 damage · Fast ranged shots</small></div><button class="shop-buy" data-weapon="gun">30 🪙 BUY</button></div>
+      <div class="shop-item"><div><b>💥 Heavy Blaster</b><small>45 damage · Heavy shot</small></div><button class="shop-buy" data-weapon="heavy">50 🪙 BUY</button></div>
+      <div class="shop-item"><div><b>⚡ Plasma Blade</b><small>60 damage · Energy melee</small></div><button class="shop-buy" data-weapon="plasma">100 🪙 BUY</button></div>
     </div>
     <button class="primary" id="closeShopBtn">BACK TO GAME</button>
   </div>
@@ -168,13 +170,22 @@
   let W = 0, H = 0, dpr = 1, groundY = 0, lastTime = 0, worldShift = 0;
   let paused = false, ended = false, soundOn = true, audioCtx = null, toastTimer = 0;
   let kills = 0, spawned = 0, waveShown = 1, spawnClock = 0, nextEnemyId = 1, hitFlash = 0, coins = 0, musicTimer = null, musicStep = 0;
+  const bossWavesSpawned = new Set();
+  let finalBossSpawned = false;
+  const roundsAnnounced = new Set();
   const keys = { left:false, right:false, attack:false };
   const enemies = [];
   const bullets = [];
-  let weapon = 'katana';
-  const ownedWeapons = new Set(['katana']);
-  const weaponData = { katana:{damage:20,cost:0,range:96}, gun:{damage:30,cost:10,range:760}, heavy:{damage:45,cost:25,range:650}, plasma:{damage:60,cost:35,range:115} };
-  const MAX_HP = 200, TARGET_KILLS = 999;
+  let weapon = 'stick';
+  const ownedWeapons = new Set(['stick']);
+  const weaponData = {
+    stick:{damage:10,cost:0,range:88},
+    katana:{damage:20,cost:10,range:100},
+    gun:{damage:30,cost:30,range:760},
+    heavy:{damage:45,cost:50,range:650},
+    plasma:{damage:60,cost:100,range:125}
+  };
+  const MAX_HP = 200, TARGET_KILLS = 999, TOTAL_ENEMIES = 1000;
   const rand = (a,b) => a + Math.random() * (b-a);
   const clamp = (v,a,b) => Math.max(a, Math.min(b,v));
   const player = { x:0, y:0, vx:0, vy:0, hp:MAX_HP, maxHp:MAX_HP, speed:250, facing:1, onGround:true, attackClock:0, swing:0, jumpPulse:0, hurtFlash:0, walk:0 };
@@ -235,31 +246,62 @@
     ui.hpText.textContent = `${Math.ceil(player.hp)} / ${MAX_HP}`;
     const pct = clamp(player.hp/MAX_HP*100,0,100); ui.hpFill.style.width = pct+'%';
     ui.hpFill.style.background = pct < 30 ? 'linear-gradient(90deg,#ff4545,#ff9a57)' : pct < 60 ? 'linear-gradient(90deg,#ff9c45,#ffe16b)' : 'linear-gradient(90deg,#23d18b,#b9f36b)';
-    ui.killText.textContent = `${kills} / ${TARGET_KILLS}`;
+    ui.killText.textContent = `${kills} / ${TOTAL_ENEMIES}`;
     ui.coinText.textContent = `${coins} 🪙`;
     const wave = waveFor(kills); ui.waveText.textContent = String(wave).padStart(2,'0')+' / 20';
     ui.wavePill.innerHTML = `WAVE <span>${String(wave).padStart(2,'0')}</span> · ${kills%50===0 && kills>0 ? 'WAVE CLEAR' : 'SURVIVE'}`;
   }
   function resetGame() {
-    kills=0; spawned=0; waveShown=1; spawnClock=0; nextEnemyId=1; worldShift=0; hitFlash=0; coins=0;
-    ownedWeapons.clear(); ownedWeapons.add('katana');
-    enemies.length=0; bullets.length=0; weapon='katana'; updateWeaponHud(); refreshShop(); player.x=W*.5; player.y=groundY; player.vx=0; player.vy=0; player.hp=MAX_HP;
+    kills=0; spawned=0; waveShown=1; spawnClock=0; nextEnemyId=1; worldShift=0; hitFlash=0; coins=0; bossWavesSpawned.clear(); roundsAnnounced.clear();
+    ownedWeapons.clear(); ownedWeapons.add('stick');
+    enemies.length=0; bullets.length=0; finalBossSpawned=false; weapon='stick'; updateWeaponHud(); refreshShop(); player.x=W*.5; player.y=groundY; player.vx=0; player.vy=0; player.hp=MAX_HP;
     player.facing=1; player.onGround=true; player.attackClock=0; player.swing=0; player.jumpPulse=0; player.hurtFlash=0; player.walk=0;
     keys.left=keys.right=keys.attack=false; paused=false; ended=false;
     ui.overlay.classList.remove('show'); ui.shopOverlay.classList.remove('show'); ui.pauseBtn.textContent='Ⅱ'; ui.pauseBtn.setAttribute('aria-label','Pause game');
     updateHud(); spawnEnemy();
   }
   function spawnEnemy() {
-    if (spawned >= TARGET_KILLS || ended) return;
+    if (spawned >= TARGET_KILLS || ended || finalBossSpawned) return;
     const side = Math.random() < .5 ? -1 : 1;
-    const early = spawned < 50;
+    const early = kills < 50;
     const difficulty = Math.floor(kills/100);
     const wave = waveFor(kills);
-    enemies.push({ id:nextEnemyId++, x:side<0 ? -35 : W+35, y:groundY, hp:early?42:48+difficulty*4,
-      maxHp:early?42:48+difficulty*4, speed:early?rand(38,62):rand(65,88)+Math.min(65,kills*.035),
-      dps:wave===1?(early?2.5:6):(wave===2?20:30), attackClock:rand(.15,.65), facing:side<0?1:-1, early, wave,
-      walk:rand(0,6), hurt:0, wobble:rand(0,6), alive:true });
+    const isRoundStart = !bossWavesSpawned.has(wave);
+    const type = isRoundStart && wave % 5 === 0 ? 'smallBoss'
+      : isRoundStart && wave % 3 === 0 ? 'bigBoss'
+      : wave === 1 ? 'normal' : 'knife';
+    if (isRoundStart && (type === 'smallBoss' || type === 'bigBoss')) bossWavesSpawned.add(wave);
+    const isBoss = type === 'bigBoss' || type === 'smallBoss';
+    const maxHp = type === 'smallBoss' ? 1000 : type === 'bigBoss' ? 500 : (early ? 42 : 48+difficulty*4);
+    enemies.push({
+      id:nextEnemyId++, type, x:side<0 ? -45 : W+45, y:groundY,
+      hp:maxHp, maxHp,
+      speed:type==='smallBoss'?rand(28,38):type==='bigBoss'?rand(35,48):early?rand(38,62):rand(65,88)+Math.min(65,kills*.035),
+      dps:wave===1?10:20,
+      bossDamage:type==='smallBoss'?50:type==='bigBoss'?25:0,
+      attackInterval:type==='smallBoss'?5:type==='bigBoss'?1:0.6,
+      attackClock:rand(.15,.65), facing:side<0?1:-1, early, wave,
+      walk:rand(0,6), hurt:0, wobble:rand(0,6), alive:true
+    });
+    if (isBoss) showToast(type==='smallBoss' ? `⚠ SMALL BOSS · 1000 HP · 50 DAMAGE / 5 SEC` : `⚠ BIG ENEMY · 500 HP · 25 DAMAGE`, 2300);
+    if (wave===2 && !roundsAnnounced.has(2)) { roundsAnnounced.add(2); showToast('🔪 ROUND 2 · KNIFE ENEMIES · 20 DAMAGE / SEC', 1900); }
     spawned++;
+  }
+  function spawnFinalBoss() {
+    if (finalBossSpawned || ended) return;
+    finalBossSpawned = true;
+    enemies.length = 0;
+    bullets.length = 0;
+    const side = player.x < W/2 ? 1 : -1;
+    enemies.push({
+      id:nextEnemyId++, type:'finalBoss', name:'PrabhuGoduuu',
+      x:clamp(player.x + side*Math.min(230,W*.42),45,W-45), y:groundY,
+      hp:99999, maxHp:99999, speed:Math.max(210,W*.28), dps:MAX_HP,
+      bossDamage:MAX_HP, attackInterval:.01, attackClock:0,
+      facing:-side, early:false, wave:20, walk:0, hurt:0, wobble:0, alive:true
+    });
+    showToast('⚠ FINAL ENEMY #1000 · PRABHUGODUUU · ONE-HIT ATTACK!', 4000);
+    updateHud();
   }
   function jump() {
     if (paused || ended) return;
@@ -268,7 +310,7 @@
   function updateWeaponHud() {
     if (!ui.weaponTag) return;
     const data = weaponData[weapon];
-    const labels = {katana:'KATANA',gun:'GUN',heavy:'HEAVY BLASTER',plasma:'PLASMA BLADE'};
+    const labels = {stick:'STICK',katana:'KATANA',gun:'GUN',heavy:'HEAVY BLASTER',plasma:'PLASMA BLADE'};
     ui.weaponTag.innerHTML = `WEAPON: <b>${labels[weapon]} · ${data.damage} DMG</b>`;
     $('switchBtn').innerHTML = `🔁 SWITCH<br>${labels[weapon]}`;
     $('attackBtn').innerHTML = weapon==='katana'||weapon==='plasma' ? '⚔ ATTACK' : '🔫 FIRE';
@@ -326,7 +368,8 @@
       kills++; coins++; player.hp=Math.min(MAX_HP,player.hp+10); audioTone(620,.12,'triangle',.045); refreshShop();
       showToast(kills%50===0 ? `WAVE ${String(waveFor(kills)).padStart(2,'0')} UNLOCKED! +10 HP` : '+10 HP · ENEMY DEFEATED', kills%50===0?1900:750);
       const newWave=waveFor(kills); if (newWave!==waveShown) waveShown=newWave;
-      if (kills>=TARGET_KILLS) finishGame(true);
+      if (kills===TARGET_KILLS) spawnFinalBoss();
+      else if (kills>=TOTAL_ENEMIES) finishGame(true);
     }
     updateHud();
   }
@@ -338,27 +381,20 @@
       audioTone(weapon==='heavy'?85:125,.075,'square',.035);
       return;
     }
-    if (weapon === 'plasma') {
+    if (weapon === 'plasma' || weapon === 'stick' || weapon === 'katana') {
       let target=null,best=Infinity;
-      for(const e of enemies){const dx=e.x-player.x;if(Math.abs(dx)<weaponData.plasma.range && Math.abs(e.y-player.y)<100 && Math.abs(dx)<best){target=e;best=Math.abs(dx);}}
-      if(target){player.facing=target.x>=player.x?1:-1;damageEnemy(target,weaponData.plasma.damage);audioTone(220,.1,'sawtooth',.04);}
+      const range=weaponData[weapon].range;
+      for(const e of enemies){const dx=e.x-player.x;if(Math.abs(dx)<range && Math.abs(e.y-player.y)<100 && Math.abs(dx)<best){target=e;best=Math.abs(dx);}}
+      if(target){player.facing=target.x>=player.x?1:-1;damageEnemy(target,weaponData[weapon].damage);audioTone(weapon==='plasma'?220:165,.1,'sawtooth',.04);}
       else audioTone(260,.055,'triangle',.018);
       return;
     }
-    let target = null, best = Infinity;
-    for (const e of enemies) {
-      const dx=e.x-player.x;
-      if (Math.abs(dx)<96 && Math.abs(e.y-player.y)<100 && Math.abs(dx)<best) { target=e; best=Math.abs(dx); }
-    }
-    if (target) {
-      player.facing = target.x >= player.x ? 1 : -1;
-      damageEnemy(target,20); audioTone(165,.08,'sawtooth',.045);
-    } else audioTone(260,.055,'triangle',.018);
+    audioTone(260,.055,'triangle',.018);
   }
   function finishGame(win) {
     ended=true; paused=true; keys.left=keys.right=keys.attack=false;
-    ui.modalIcon.textContent=win?'🏆':'💥'; ui.modalTitle.textContent=win?'LEGENDARY VICTORY!':'GAME OVER';
-    ui.modalText.textContent=win ? 'You defeated all 999 enemies. PRABHU GODUUU legend status unlocked!' : `You defeated ${kills} of 999 enemies. Every kill restores +10 HP, up to 200 HP. Try another run!`;
+    ui.modalIcon.textContent=win?'🏆':'💥'; ui.modalTitle.textContent=win?'LEGENDARY VICTORY!':'HERO DIED — YOU LOOSE!';
+    ui.modalText.textContent=win ? 'You defeated all 1000 enemies. PRABHU GODUUU legend status unlocked!' : (finalBossSpawned ? 'PRABHUGODUUU defeated the hero in one shot. YOU LOOSE!' : `You defeated ${kills} of ${TOTAL_ENEMIES} enemies. Try another run!`);
     ui.resumeBtn.textContent=win?'PLAY AGAIN':'TRY AGAIN'; ui.overlay.classList.add('show'); ui.pauseBtn.textContent='▶';
   }
   function togglePause(force) {
@@ -443,12 +479,17 @@
     ctx.stroke();
     if(isPlayer) {
       // Distinct, readable weapon silhouettes: curved katana or compact blaster.
-      if (heldWeapon === 'gun') {
-        ctx.strokeStyle='#252f3c'; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(10,hipY-20); ctx.lineTo(25,hipY-25); ctx.lineTo(36,hipY-25); ctx.stroke();
+      if (heldWeapon === 'gun' || heldWeapon === 'heavy') {
+        ctx.strokeStyle='#252f3c'; ctx.lineWidth=heldWeapon==='heavy'?7:5; ctx.beginPath(); ctx.moveTo(10,hipY-20); ctx.lineTo(25,hipY-25); ctx.lineTo(36,hipY-25); ctx.stroke();
         ctx.strokeStyle='#a8d8ef'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(24,hipY-28); ctx.lineTo(36,hipY-28); ctx.stroke();
         if (swing>0) { ctx.fillStyle='rgba(255,220,100,.8)'; ctx.beginPath(); ctx.arc(39,hipY-25,4+Math.random()*2,0,Math.PI*2); ctx.fill(); }
+      } else if (heldWeapon === 'stick') {
+        ctx.strokeStyle='#8a552c'; ctx.lineWidth=5; ctx.beginPath(); ctx.moveTo(10,hipY-19); ctx.lineTo(25+swing*9,hipY-39); ctx.stroke();
+        ctx.strokeStyle='#d9a66d'; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(12,hipY-23); ctx.lineTo(26+swing*9,hipY-41); ctx.stroke();
       } else {
-        ctx.strokeStyle='#dce7f4'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(10+swing*13,hipY-20); ctx.lineTo(24+swing*20,hipY-39); ctx.stroke();
+        ctx.strokeStyle=heldWeapon==='plasma'?'#6df5ff':'#dce7f4'; ctx.lineWidth=heldWeapon==='plasma'?5:3;
+        if(heldWeapon==='plasma'){ctx.shadowColor='#25d9ff';ctx.shadowBlur=12;}
+        ctx.beginPath(); ctx.moveTo(10+swing*13,hipY-20); ctx.lineTo(24+swing*20,hipY-39); ctx.stroke(); ctx.shadowBlur=0;
         ctx.strokeStyle='#ffd66e'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(12+swing*13,hipY-22); ctx.lineTo(17+swing*13,hipY-29); ctx.stroke();
         if(swing>0){ ctx.strokeStyle=`rgba(255,224,132,${.35+swing*.45})`; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(18,hipY-27); ctx.lineTo(43+swing*25,hipY-47); ctx.stroke(); }
       }
@@ -464,9 +505,16 @@
     ctx.restore();
   }
   function drawEnemyHealth(e) {
-    const w=34,h=4,x=e.x-w/2,y=e.y-79;
-    ctx.fillStyle='rgba(10,22,30,.55)'; roundedRect(x,y,w,h,2,true);
-    ctx.fillStyle='#ff6664'; roundedRect(x,y,w*clamp(e.hp/e.maxHp,0,1),h,2,true);
+    const w=e.type==='finalBoss'?190:e.type==='smallBoss'?100:e.type==='bigBoss'?78:34, h=e.type==='normal'||e.type==='knife'?4:7;
+    const y=e.y-(e.type==='finalBoss'?178:e.type==='smallBoss'?125:e.type==='bigBoss'?108:79), x=e.x-w/2;
+    if(e.type!=='normal' && e.type!=='knife') {
+      ctx.fillStyle='rgba(10,22,30,.9)'; roundedRect(x-2,y-2,w+4,h+4,4,true);
+      ctx.fillStyle='#fff'; ctx.font='900 9px system-ui'; ctx.textAlign='center';
+      ctx.fillText(e.type==='finalBoss'?'PRABHUGODUUU · FINAL BOSS':e.type==='smallBoss'?'SMALL BOSS · 1000 HP':'BIG ENEMY · 500 HP',e.x,y-7);
+    }
+    ctx.fillStyle='rgba(10,22,30,.7)'; roundedRect(x,y,w,h,3,true);
+    ctx.fillStyle=e.type==='finalBoss'?'#9c4dff':e.type==='smallBoss'?'#ff3f71':e.type==='bigBoss'?'#ff8c36':'#ff6664';
+    roundedRect(x,y,w*clamp(e.hp/e.maxHp,0,1),h,3,true);
   }
   function update(dt) {
     if(paused||ended) return;
@@ -495,12 +543,26 @@
       const e=enemies[i]; e.walk+=dt*5; e.hurt=Math.max(0,e.hurt-dt); e.attackClock-=dt;
       const dx=player.x-e.x; e.facing=dx>=0?1:-1;
       if(Math.abs(dx)>27){e.x+=Math.sign(dx)*e.speed*dt;}
-      if(Math.abs(dx)<42 && Math.abs(player.y-e.y)<48){
-        // Wave 2 knife enemies deal 20 HP per second; wave 3 onward deal 30 HP per second.
-        const damagePerSecond = e.wave===1 ? e.dps : (e.wave===2 ? 20 : 30);
-        player.hp=Math.max(0,player.hp-damagePerSecond*dt);
-        player.hurtFlash=.08; hitFlash=.025;
-        if(e.attackClock<=0){ e.attackClock=.62; audioTone(95,.055,'square',.012); }
+      const contactRange = e.type==='finalBoss' ? 92 : e.type==='smallBoss' ? 68 : e.type==='bigBoss' ? 58 : 42;
+      if(Math.abs(dx)<contactRange && Math.abs(player.y-e.y)<58){
+        if(e.type==='finalBoss') {
+          if(e.attackClock<=0) {
+            player.hp=0; player.hurtFlash=.5; hitFlash=.25;
+            audioTone(45,.3,'sawtooth',.08); finishGame(false); break;
+          }
+        } else if(e.type==='smallBoss' || e.type==='bigBoss') {
+          if(e.attackClock<=0) {
+            player.hp=Math.max(0,player.hp-e.bossDamage);
+            e.attackClock=e.attackInterval;
+            player.hurtFlash=.22; hitFlash=.08;
+            audioTone(e.type==='smallBoss'?70:90,.12,'square',.04);
+          }
+        } else {
+          const damagePerSecond = e.wave===1 ? 10 : 20;
+          player.hp=Math.max(0,player.hp-damagePerSecond*dt);
+          player.hurtFlash=.08; hitFlash=.025;
+          if(e.attackClock<=0){ e.attackClock=.62; audioTone(95,.055,'square',.012); }
+        }
         updateHud();
         if(player.hp<=0){finishGame(false);break;}
       }
@@ -513,7 +575,13 @@
     ctx.setTransform(dpr,0,0,dpr,0,0); drawBackground(0);
     // Occasional small stones in the foreground
     for(let i=0;i<6;i++){ const x=((i*W*.23-worldShift*.65)%(W+45)+W+45)%(W+45)-20; ctx.fillStyle='rgba(91,109,74,.45)'; ctx.beginPath(); ctx.ellipse(x,groundY+32+(i%2)*12,7,3,0,0,Math.PI*2);ctx.fill(); }
-    for(const e of enemies){ drawStickman(e.x,e.y,e.facing,e.wave>=3?'#6e202b':'#a63e43',e.walk,0,e.hurt,false,false,e.wave>=2?'knife':'none'); drawEnemyHealth(e); }
+    for(const e of enemies){
+      const isBoss=e.type==='bigBoss'||e.type==='smallBoss'||e.type==='finalBoss';
+      const scale=e.type==='finalBoss'?2.25:e.type==='smallBoss'?1.75:e.type==='bigBoss'?1.45:1;
+      ctx.save(); ctx.translate(e.x,e.y); ctx.scale(scale,scale);
+      drawStickman(0,0,e.facing,e.type==='finalBoss'?'#5b0bd6':e.type==='smallBoss'?'#7a1238':e.type==='bigBoss'?'#7d2c13':e.wave===1?'#a63e43':'#6e202b',e.walk,0,e.hurt,false,false,e.wave>=2?'knife':'stick');
+      ctx.restore(); drawEnemyHealth(e);
+    }
     for (const b of bullets) { ctx.save(); ctx.strokeStyle='#ffd76b'; ctx.lineWidth=4; ctx.shadowColor='#ff9c3a'; ctx.shadowBlur=10; ctx.beginPath(); ctx.moveTo(b.x,b.y); ctx.lineTo(b.x-Math.sign(b.vx)*16,b.y); ctx.stroke(); ctx.restore(); }
     drawStickman(player.x,player.y,player.facing,player.hurtFlash>0?'#fff0ee':'#153c66',player.walk,player.swing,player.hurtFlash,true,!player.onGround,weapon);
     if(hitFlash>0){ctx.fillStyle=`rgba(255,70,70,${hitFlash*1.5})`;ctx.fillRect(0,0,W,H);}
